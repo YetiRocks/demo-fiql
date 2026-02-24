@@ -1,0 +1,1059 @@
+{
+  "database": "example-queries",
+  "table": "Products",
+  "records": [
+    {
+      "id": "prod-001",
+      "name": "Ultra HD Monitor",
+      "price": 499.99,
+      "height": 45,
+      "width": 70,
+      "description": "27-inch 4K display with HDR support",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ViewTech",
+        "country": "JP",
+        "year": 2024
+      },
+      "tags": [
+        "display",
+        "4k",
+        "popular"
+      ],
+      "brandId": "brand-viewtech"
+    },
+    {
+      "id": "prod-002",
+      "name": "Wireless Pro Mouse",
+      "price": 79.99,
+      "height": 4,
+      "width": 6.5,
+      "description": "Ergonomic wireless mouse with programmable buttons",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ClickCo",
+        "country": "US",
+        "year": 2023
+      },
+      "tags": [
+        "peripherals",
+        "wireless",
+        "ergonomic"
+      ],
+      "brandId": "brand-clickco"
+    },
+    {
+      "id": "prod-003",
+      "name": "Standing Desk Pro",
+      "price": 649,
+      "height": 120,
+      "width": 160,
+      "description": "Electric sit-stand desk with memory presets",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ErgoWorks",
+        "country": "SE",
+        "year": 2024
+      },
+      "tags": [
+        "office",
+        "ergonomic",
+        "popular"
+      ],
+      "brandId": "brand-ergoworks"
+    },
+    {
+      "id": "prod-004",
+      "name": "Rust Programming Handbook",
+      "price": 44.99,
+      "height": 24,
+      "width": 17,
+      "description": "Comprehensive guide to systems programming with Rust",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "CodePress",
+        "country": "US",
+        "year": 2024
+      },
+      "tags": [
+        "programming",
+        "rust",
+        "technical"
+      ],
+      "brandId": "brand-codepress"
+    },
+    {
+      "id": "prod-005",
+      "name": "Merino Wool Sweater",
+      "price": 89,
+      "height": 68,
+      "width": 52,
+      "description": "Lightweight merino wool pullover, machine washable",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "WoolCraft",
+        "country": "NZ",
+        "year": 2024
+      },
+      "tags": [
+        "winter",
+        "wool",
+        "sale"
+      ],
+      "brandId": "brand-woolcraft"
+    },
+    {
+      "id": "prod-006",
+      "name": "Carbon Fiber Tennis Racket",
+      "price": 229,
+      "height": 69,
+      "width": 26,
+      "description": "Tournament-grade racket with vibration dampening",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "SwingMax",
+        "country": "US",
+        "year": 2023
+      },
+      "tags": [
+        "tennis",
+        "carbon-fiber",
+        "pro"
+      ],
+      "brandId": "brand-swingmax"
+    },
+    {
+      "id": "prod-007",
+      "name": "Mechanical Keyboard",
+      "price": 149.99,
+      "height": 4.5,
+      "width": 35.5,
+      "description": "Cherry MX Blue switches with RGB backlight kit",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "KeyForge",
+        "country": "DE",
+        "year": 2024
+      },
+      "tags": [
+        "peripherals",
+        "mechanical",
+        "rgb"
+      ],
+      "brandId": "brand-keyforge"
+    },
+    {
+      "id": "prod-008",
+      "name": "Walnut Bookshelf",
+      "price": 320,
+      "height": 180,
+      "width": 80,
+      "description": "Solid walnut 5-tier bookshelf with adjustable shelves",
+      "category": "furniture",
+      "inStock": false,
+      "manufacturer": {
+        "name": "TimberLine",
+        "country": "CA",
+        "year": 2023
+      },
+      "tags": [
+        "storage",
+        "wood",
+        "handcrafted"
+      ],
+      "brandId": "brand-timberline"
+    },
+    {
+      "id": "prod-009",
+      "name": "Data Structures in TypeScript",
+      "price": 39.99,
+      "height": 23,
+      "width": 16,
+      "description": "Practical data structures and algorithms for web developers",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "CodePress",
+        "country": "US",
+        "year": 2023
+      },
+      "tags": [
+        "programming",
+        "typescript",
+        "algorithms"
+      ],
+      "brandId": "brand-codepress"
+    },
+    {
+      "id": "prod-010",
+      "name": "Trail Running Shoes",
+      "price": 139,
+      "height": 12,
+      "width": 10.5,
+      "description": "All-terrain trail shoes with Gore-Tex lining",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "TrailBlazer",
+        "country": "IT",
+        "year": 2024
+      },
+      "tags": [
+        "running",
+        "waterproof",
+        "popular"
+      ],
+      "brandId": "brand-trailblazer"
+    },
+    {
+      "id": "prod-011",
+      "name": "USB-C Hub Pro",
+      "price": 59.99,
+      "height": 1.5,
+      "width": 10,
+      "description": "7-in-1 USB-C hub with 4K HDMI and 100W passthrough",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "PortPlus",
+        "country": "TW",
+        "year": 2024
+      },
+      "tags": [
+        "usb-c",
+        "hub",
+        "portable"
+      ],
+      "brandId": "brand-portplus"
+    },
+    {
+      "id": "prod-012",
+      "name": "Ergonomic Office Chair",
+      "price": 549,
+      "height": 115,
+      "width": 68,
+      "description": "Mesh-back chair with lumbar support and headrest",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ErgoWorks",
+        "country": "SE",
+        "year": 2024
+      },
+      "tags": [
+        "office",
+        "ergonomic",
+        "mesh"
+      ],
+      "brandId": "brand-ergoworks"
+    },
+    {
+      "id": "prod-013",
+      "name": "Linen Button-Down Shirt",
+      "price": 65,
+      "height": 76,
+      "width": 54,
+      "description": "Breathable pure linen shirt for summer",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FabricHouse",
+        "country": "FR",
+        "year": 2024
+      },
+      "tags": [
+        "summer",
+        "linen",
+        "casual"
+      ],
+      "brandId": "brand-fabrichouse"
+    },
+    {
+      "id": "prod-014",
+      "name": "Yoga Mat Premium",
+      "price": 45,
+      "height": 0.6,
+      "width": 61,
+      "description": "Extra-thick non-slip yoga mat with carrying strap kit",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FlexForm",
+        "country": "IN",
+        "year": 2023
+      },
+      "tags": [
+        "yoga",
+        "fitness",
+        "non-slip"
+      ],
+      "brandId": "brand-flexform"
+    },
+    {
+      "id": "prod-015",
+      "name": "Portable SSD 2TB",
+      "price": 179.99,
+      "height": 1,
+      "width": 7.5,
+      "description": "NVMe portable drive with 2000MB/s read speed",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "DataVault",
+        "country": "KR",
+        "year": 2024
+      },
+      "tags": [
+        "storage",
+        "portable",
+        "fast"
+      ],
+      "brandId": "brand-datavault"
+    },
+    {
+      "id": "prod-016",
+      "name": "Bamboo Desk Organizer",
+      "price": 34.99,
+      "height": 15,
+      "width": 25,
+      "description": "Multi-compartment desk organizer made from sustainable bamboo",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "GreenDesk",
+        "country": "CN",
+        "year": 2023
+      },
+      "tags": [
+        "organization",
+        "bamboo",
+        "eco"
+      ],
+      "brandId": "brand-greendesk"
+    },
+    {
+      "id": "prod-017",
+      "name": "API Design Patterns",
+      "price": 54.99,
+      "height": 24,
+      "width": 18,
+      "description": "Best practices for designing robust web APIs",
+      "category": "books",
+      "inStock": false,
+      "manufacturer": {
+        "name": "ArchPress",
+        "country": "UK",
+        "year": 2024
+      },
+      "tags": [
+        "programming",
+        "api",
+        "architecture"
+      ],
+      "brandId": "brand-archpress"
+    },
+    {
+      "id": "prod-018",
+      "name": "Down Winter Jacket",
+      "price": 199,
+      "height": 75,
+      "width": 58,
+      "description": "800-fill goose down jacket rated to -20C",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "AlpineGear",
+        "country": "CH",
+        "year": 2024
+      },
+      "tags": [
+        "winter",
+        "down",
+        "waterproof"
+      ],
+      "brandId": "brand-alpinegear"
+    },
+    {
+      "id": "prod-019",
+      "name": "Resistance Band Set",
+      "price": 29.99,
+      "height": 2,
+      "width": 15,
+      "description": "5-piece resistance band set with door anchor kit",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FlexForm",
+        "country": "IN",
+        "year": 2024
+      },
+      "tags": [
+        "fitness",
+        "bands",
+        "portable"
+      ],
+      "brandId": "brand-flexform"
+    },
+    {
+      "id": "prod-020",
+      "name": "Noise Cancelling Headphones",
+      "price": 349.99,
+      "height": 20,
+      "width": 17,
+      "description": "Over-ear ANC headphones with 30-hour battery",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "SoundWave",
+        "country": "JP",
+        "year": 2024
+      },
+      "tags": [
+        "audio",
+        "anc",
+        "wireless",
+        "popular"
+      ],
+      "brandId": "brand-soundwave"
+    },
+    {
+      "id": "prod-021",
+      "name": "Leather Messenger Bag",
+      "price": 159,
+      "height": 30,
+      "width": 40,
+      "description": "Full-grain leather messenger bag with laptop compartment",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "HideCraft",
+        "country": "IT",
+        "year": 2023
+      },
+      "tags": [
+        "leather",
+        "bags",
+        "professional"
+      ],
+      "brandId": "brand-hidecraft"
+    },
+    {
+      "id": "prod-022",
+      "name": "Smart LED Desk Lamp",
+      "price": 69.99,
+      "height": 45,
+      "width": 12,
+      "description": "Adjustable color temperature lamp with USB charging port",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "LumiTech",
+        "country": "CN",
+        "year": 2024
+      },
+      "tags": [
+        "lighting",
+        "smart",
+        "usb"
+      ],
+      "brandId": "brand-lumitech"
+    },
+    {
+      "id": "prod-023",
+      "name": "Oak Coffee Table",
+      "price": 425,
+      "height": 45,
+      "width": 120,
+      "description": "Solid oak coffee table with lower storage shelf",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "TimberLine",
+        "country": "CA",
+        "year": 2024
+      },
+      "tags": [
+        "living-room",
+        "wood",
+        "storage"
+      ],
+      "brandId": "brand-timberline"
+    },
+    {
+      "id": "prod-024",
+      "name": "Distributed Systems Guide",
+      "price": 59.99,
+      "height": 25,
+      "width": 18,
+      "description": "Understanding consensus, replication, and fault tolerance",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ArchPress",
+        "country": "UK",
+        "year": 2023
+      },
+      "tags": [
+        "programming",
+        "distributed",
+        "architecture"
+      ],
+      "brandId": "brand-archpress"
+    },
+    {
+      "id": "prod-025",
+      "name": "Climbing Harness Pro",
+      "price": 89.99,
+      "height": 25,
+      "width": 30,
+      "description": "Lightweight sport climbing harness with gear loops",
+      "category": "sports",
+      "inStock": false,
+      "manufacturer": {
+        "name": "VerticalEdge",
+        "country": "FR",
+        "year": 2024
+      },
+      "tags": [
+        "climbing",
+        "safety",
+        "lightweight"
+      ],
+      "brandId": "brand-verticaledge"
+    },
+    {
+      "id": "prod-026",
+      "name": "Webcam 4K Pro",
+      "price": 129.99,
+      "height": 5,
+      "width": 8,
+      "description": "4K webcam with auto-focus and built-in privacy shutter",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ViewTech",
+        "country": "JP",
+        "year": 2024
+      },
+      "tags": [
+        "camera",
+        "4k",
+        "streaming"
+      ],
+      "brandId": "brand-viewtech"
+    },
+    {
+      "id": "prod-027",
+      "name": "Floating Wall Shelf Set",
+      "price": 79.99,
+      "height": 3,
+      "width": 60,
+      "description": "Set of 3 floating shelves in matte white finish",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "GreenDesk",
+        "country": "CN",
+        "year": 2024
+      },
+      "tags": [
+        "storage",
+        "wall-mount",
+        "modern"
+      ],
+      "brandId": "brand-greendesk"
+    },
+    {
+      "id": "prod-028",
+      "name": "Cotton Chino Pants",
+      "price": 55,
+      "height": 100,
+      "width": 38,
+      "description": "Slim-fit stretch cotton chinos in navy",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FabricHouse",
+        "country": "FR",
+        "year": 2024
+      },
+      "tags": [
+        "pants",
+        "cotton",
+        "casual"
+      ],
+      "brandId": "brand-fabrichouse"
+    },
+    {
+      "id": "prod-029",
+      "name": "Database Internals",
+      "price": 49.99,
+      "height": 24,
+      "width": 17,
+      "description": "Deep dive into storage engines and distributed data systems",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "CodePress",
+        "country": "US",
+        "year": 2023
+      },
+      "tags": [
+        "programming",
+        "databases",
+        "technical"
+      ],
+      "brandId": "brand-codepress"
+    },
+    {
+      "id": "prod-030",
+      "name": "Stainless Steel Water Bottle",
+      "price": 24.99,
+      "height": 26,
+      "width": 7.5,
+      "description": "Insulated 750ml bottle keeps drinks cold 24 hours",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "HydroKit",
+        "country": "US",
+        "year": 2024
+      },
+      "tags": [
+        "hydration",
+        "insulated",
+        "eco"
+      ],
+      "brandId": "brand-hydrokit"
+    },
+    {
+      "id": "prod-031",
+      "name": "Thunderbolt Dock",
+      "price": 299.99,
+      "height": 3,
+      "width": 20,
+      "description": "Thunderbolt 4 docking station with dual 4K output",
+      "category": "electronics",
+      "inStock": false,
+      "manufacturer": {
+        "name": "PortPlus",
+        "country": "TW",
+        "year": 2024
+      },
+      "tags": [
+        "thunderbolt",
+        "dock",
+        "professional"
+      ],
+      "brandId": "brand-portplus"
+    },
+    {
+      "id": "prod-032",
+      "name": "Velvet Accent Chair",
+      "price": 389,
+      "height": 82,
+      "width": 72,
+      "description": "Mid-century modern accent chair in emerald velvet",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ModLiving",
+        "country": "DK",
+        "year": 2024
+      },
+      "tags": [
+        "living-room",
+        "velvet",
+        "modern"
+      ],
+      "brandId": "brand-modliving"
+    },
+    {
+      "id": "prod-033",
+      "name": "Waterproof Hiking Boots",
+      "price": 179,
+      "height": 18,
+      "width": 12,
+      "description": "Ankle-high hiking boots with Vibram sole",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "TrailBlazer",
+        "country": "IT",
+        "year": 2024
+      },
+      "tags": [
+        "hiking",
+        "waterproof",
+        "boots"
+      ],
+      "brandId": "brand-trailblazer"
+    },
+    {
+      "id": "prod-034",
+      "name": "Cashmere Scarf",
+      "price": 120,
+      "height": 180,
+      "width": 30,
+      "description": "Pure cashmere scarf in charcoal grey",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "WoolCraft",
+        "country": "NZ",
+        "year": 2024
+      },
+      "tags": [
+        "winter",
+        "cashmere",
+        "luxury"
+      ],
+      "brandId": "brand-woolcraft"
+    },
+    {
+      "id": "prod-035",
+      "name": "Wireless Charging Pad",
+      "price": 34.99,
+      "height": 1,
+      "width": 10,
+      "description": "15W fast wireless charger with LED indicator",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ClickCo",
+        "country": "US",
+        "year": 2024
+      },
+      "tags": [
+        "charging",
+        "wireless",
+        "fast"
+      ],
+      "brandId": "brand-clickco"
+    },
+    {
+      "id": "prod-036",
+      "name": "Minimalist Wall Clock",
+      "price": 49.99,
+      "height": 30,
+      "width": 30,
+      "description": "Silent-sweep wall clock with wooden frame",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ModLiving",
+        "country": "DK",
+        "year": 2023
+      },
+      "tags": [
+        "decor",
+        "clock",
+        "minimal"
+      ],
+      "brandId": "brand-modliving"
+    },
+    {
+      "id": "prod-037",
+      "name": "GraphQL in Action",
+      "price": 42.99,
+      "height": 23,
+      "width": 17,
+      "description": "Building modern APIs with GraphQL and TypeScript",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "CodePress",
+        "country": "US",
+        "year": 2024
+      },
+      "tags": [
+        "programming",
+        "graphql",
+        "api"
+      ],
+      "brandId": "brand-codepress"
+    },
+    {
+      "id": "prod-038",
+      "name": "Denim Jacket Classic",
+      "price": 95,
+      "height": 70,
+      "width": 55,
+      "description": "Classic-fit medium wash denim jacket",
+      "category": "clothing",
+      "inStock": false,
+      "manufacturer": {
+        "name": "FabricHouse",
+        "country": "FR",
+        "year": 2023
+      },
+      "tags": [
+        "denim",
+        "jacket",
+        "classic"
+      ],
+      "brandId": "brand-fabrichouse"
+    },
+    {
+      "id": "prod-039",
+      "name": "Foam Roller Set",
+      "price": 35,
+      "height": 15,
+      "width": 15,
+      "description": "High-density foam roller with massage ball kit",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FlexForm",
+        "country": "IN",
+        "year": 2024
+      },
+      "tags": [
+        "recovery",
+        "massage",
+        "fitness"
+      ],
+      "brandId": "brand-flexform"
+    },
+    {
+      "id": "prod-040",
+      "name": "Curved Gaming Monitor",
+      "price": 899.99,
+      "height": 50,
+      "width": 80,
+      "description": "34-inch ultrawide curved display at 165Hz",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ViewTech",
+        "country": "JP",
+        "year": 2024
+      },
+      "tags": [
+        "display",
+        "gaming",
+        "ultrawide",
+        "popular"
+      ],
+      "brandId": "brand-viewtech"
+    },
+    {
+      "id": "prod-041",
+      "name": "Ceramic Plant Pot Set",
+      "price": 42,
+      "height": 18,
+      "width": 15,
+      "description": "Set of 3 matte ceramic pots with drainage holes",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "GreenDesk",
+        "country": "CN",
+        "year": 2024
+      },
+      "tags": [
+        "garden",
+        "ceramic",
+        "eco"
+      ],
+      "brandId": "brand-greendesk"
+    },
+    {
+      "id": "prod-042",
+      "name": "Running Shorts Pro",
+      "price": 45,
+      "height": 35,
+      "width": 32,
+      "description": "Moisture-wicking running shorts with zip pocket",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "TrailBlazer",
+        "country": "IT",
+        "year": 2024
+      },
+      "tags": [
+        "running",
+        "moisture-wicking",
+        "sport"
+      ],
+      "brandId": "brand-trailblazer"
+    },
+    {
+      "id": "prod-043",
+      "name": "Bluetooth Speaker Mini",
+      "price": 39.99,
+      "height": 8,
+      "width": 8,
+      "description": "Waterproof portable speaker with 12-hour battery",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "SoundWave",
+        "country": "JP",
+        "year": 2024
+      },
+      "tags": [
+        "audio",
+        "bluetooth",
+        "waterproof",
+        "portable"
+      ],
+      "brandId": "brand-soundwave"
+    },
+    {
+      "id": "prod-044",
+      "name": "Linux Kernel Development",
+      "price": 64.99,
+      "height": 25,
+      "width": 18,
+      "description": "In-depth guide to kernel internals and module programming",
+      "category": "books",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ArchPress",
+        "country": "UK",
+        "year": 2024
+      },
+      "tags": [
+        "programming",
+        "linux",
+        "kernel"
+      ],
+      "brandId": "brand-archpress"
+    },
+    {
+      "id": "prod-045",
+      "name": "Adjustable Dumbbell Set",
+      "price": 349,
+      "height": 20,
+      "width": 42,
+      "description": "Adjustable dumbbells from 2.5kg to 25kg each",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FlexForm",
+        "country": "IN",
+        "year": 2024
+      },
+      "tags": [
+        "weights",
+        "adjustable",
+        "home-gym"
+      ],
+      "brandId": "brand-flexform"
+    },
+    {
+      "id": "prod-046",
+      "name": "Laptop Stand Aluminum",
+      "price": 54.99,
+      "height": 15,
+      "width": 25,
+      "description": "Adjustable aluminum laptop stand with ventilation",
+      "category": "electronics",
+      "inStock": true,
+      "manufacturer": {
+        "name": "PortPlus",
+        "country": "TW",
+        "year": 2023
+      },
+      "tags": [
+        "ergonomic",
+        "aluminum",
+        "portable"
+      ],
+      "brandId": "brand-portplus"
+    },
+    {
+      "id": "prod-047",
+      "name": "Linen Throw Blanket",
+      "price": 75,
+      "height": 200,
+      "width": 140,
+      "description": "Stonewashed linen throw in natural beige",
+      "category": "furniture",
+      "inStock": true,
+      "manufacturer": {
+        "name": "ModLiving",
+        "country": "DK",
+        "year": 2024
+      },
+      "tags": [
+        "living-room",
+        "linen",
+        "cozy"
+      ],
+      "brandId": "brand-modliving"
+    },
+    {
+      "id": "prod-048",
+      "name": "Compression Socks 3-Pack",
+      "price": 28,
+      "height": 40,
+      "width": 10,
+      "description": "Graduated compression socks for running and recovery",
+      "category": "clothing",
+      "inStock": true,
+      "manufacturer": {
+        "name": "TrailBlazer",
+        "country": "IT",
+        "year": 2024
+      },
+      "tags": [
+        "running",
+        "compression",
+        "pack"
+      ],
+      "brandId": "brand-trailblazer"
+    },
+    {
+      "id": "prod-049",
+      "name": "Webcam Light Ring",
+      "price": 19.99,
+      "height": 26,
+      "width": 26,
+      "description": "Clip-on ring light with 3 brightness levels",
+      "category": "electronics",
+      "inStock": false,
+      "manufacturer": {
+        "name": "LumiTech",
+        "country": "CN",
+        "year": 2023
+      },
+      "tags": [
+        "lighting",
+        "streaming",
+        "compact"
+      ],
+      "brandId": "brand-lumitech"
+    },
+    {
+      "id": "prod-050",
+      "name": "Jump Rope Speed Pro",
+      "price": 18.99,
+      "height": 2,
+      "width": 15,
+      "description": "Weighted speed rope with ball bearings and foam grips",
+      "category": "sports",
+      "inStock": true,
+      "manufacturer": {
+        "name": "FlexForm",
+        "country": "IN",
+        "year": 2024
+      },
+      "tags": [
+        "cardio",
+        "speed",
+        "portable"
+      ],
+      "brandId": "brand-flexform"
+    }
+  ]
+}

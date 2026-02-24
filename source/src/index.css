@@ -1,0 +1,62 @@
+/* FIQL Demo */
+.panel-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.query-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.query-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-primary);
+  background: transparent;
+  color: var(--color-white);
+  transition: background var(--transition-fast);
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.query-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.query-item.active {
+  background: rgba(255, 0, 255, 0.1);
+  border-left: 3px solid var(--color-success);
+  padding-left: calc(var(--space-3) - 3px);
+}
+
+.query-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.query-item-label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.query-item-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-grey);
+  line-height: 1.4;
+}
+
+.btn-run {
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+}
+
+.results-body {
+  overflow: auto;
+  padding: 0;
+  background: var(--color-black);
+}

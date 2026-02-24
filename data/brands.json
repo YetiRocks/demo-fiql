@@ -1,0 +1,28 @@
+{
+  "database": "example-queries",
+  "table": "Brand",
+  "records": [
+    { "id": "brand-viewtech", "name": "ViewTech", "country": "JP", "foundedYear": 2024 },
+    { "id": "brand-clickco", "name": "ClickCo", "country": "US", "foundedYear": 2023 },
+    { "id": "brand-ergoworks", "name": "ErgoWorks", "country": "SE", "foundedYear": 2024 },
+    { "id": "brand-codepress", "name": "CodePress", "country": "US", "foundedYear": 2024 },
+    { "id": "brand-woolcraft", "name": "WoolCraft", "country": "NZ", "foundedYear": 2024 },
+    { "id": "brand-swingmax", "name": "SwingMax", "country": "US", "foundedYear": 2023 },
+    { "id": "brand-keyforge", "name": "KeyForge", "country": "DE", "foundedYear": 2024 },
+    { "id": "brand-timberline", "name": "TimberLine", "country": "CA", "foundedYear": 2023 },
+    { "id": "brand-trailblazer", "name": "TrailBlazer", "country": "IT", "foundedYear": 2024 },
+    { "id": "brand-portplus", "name": "PortPlus", "country": "TW", "foundedYear": 2024 },
+    { "id": "brand-flexform", "name": "FlexForm", "country": "IN", "foundedYear": 2023 },
+    { "id": "brand-datavault", "name": "DataVault", "country": "KR", "foundedYear": 2024 },
+    { "id": "brand-greendesk", "name": "GreenDesk", "country": "CN", "foundedYear": 2023 },
+    { "id": "brand-archpress", "name": "ArchPress", "country": "UK", "foundedYear": 2024 },
+    { "id": "brand-alpinegear", "name": "AlpineGear", "country": "CH", "foundedYear": 2024 },
+    { "id": "brand-hidecraft", "name": "HideCraft", "country": "IT", "foundedYear": 2023 },
+    { "id": "brand-lumitech", "name": "LumiTech", "country": "CN", "foundedYear": 2024 },
+    { "id": "brand-soundwave", "name": "SoundWave", "country": "JP", "foundedYear": 2024 },
+    { "id": "brand-modliving", "name": "ModLiving", "country": "DK", "foundedYear": 2024 },
+    { "id": "brand-hydrokit", "name": "HydroKit", "country": "US", "foundedYear": 2024 },
+    { "id": "brand-fabrichouse", "name": "FabricHouse", "country": "FR", "foundedYear": 2024 },
+    { "id": "brand-verticaledge", "name": "VerticalEdge", "country": "FR", "foundedYear": 2024 }
+  ]
+}

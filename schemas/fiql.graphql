@@ -1,0 +1,25 @@
+# Product catalog for demonstrating FIQL query patterns
+
+type Products @table(database: "demo-fiql") @export @compositeIndex(fields: "category,price") {
+    id: ID! @primaryKey
+    name: String! @indexed(type: "fulltext")
+    price: Float! @indexed
+    height: Float
+    width: Float
+    description: String @indexed(type: "fulltext")
+    category: String! @indexed
+    inStock: Boolean! @indexed
+    manufacturer: String
+    tags: String
+    brandId: ID @indexed
+    brand: Brand @relationship(from: "brandId")
+}
+
+# Brands for demonstrating chained attributes and joins
+type Brand @table(database: "demo-fiql") @export {
+    id: ID! @primaryKey
+    name: String! @indexed
+    country: String!
+    foundedYear: Int
+    products: [Products] @relationship(to: "brandId")
+}
