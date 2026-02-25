@@ -9,6 +9,9 @@ graphql: true
 schemas:
   - schemas/fiql.graphql
 
+resources:
+  - resources/*.rs
+
 dataLoader: data/*.json
 
 static_files:
