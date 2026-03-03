@@ -11,7 +11,7 @@ hljs.registerLanguage('fiql', () => ({
   contains: [
     { className: 'keyword', begin: '\\b(select|sort|limit|offset|explain|pagination|stream)\\b' },
     { className: 'attr', begin: '[a-zA-Z_][a-zA-Z0-9_.]*(?=\\s*[=(])' },
-    { className: 'symbol', begin: '=(?:gt|ge|lt|le|ne|ct|sw|ew|ft|in|out|gele|~)=' },
+    { className: 'symbol', begin: '=(?:gt|ge|lt|le|ne|ct|sw|ew|ft|in|out|gele|gelt|gtle|gtlt|~)=' },
     { className: 'symbol', begin: '===|==' },
     { className: 'string', begin: '(?<==)[^&|()!]+' },
     { className: 'punctuation', begin: '[&|()!,]' },
@@ -70,15 +70,41 @@ const QUERIES: QueryExample[] = [
     description: 'id===prod-001 — exact match, no type coercion',
     path: '/Products/?id===prod-001',
   },
+  // ── Range Scans ──
   {
-    label: 'Range (=gele=)',
-    description: 'price=gele=50,150 — between $50 and $150 inclusive',
+    label: 'Range: inclusive (=gele=)',
+    description: 'price=gele=50,150 — $50 <= price <= $150 (closed interval)',
     path: '/Products/?price=gele=50,150',
   },
   {
+    label: 'Range: half-open (=gelt=)',
+    description: 'price=gelt=50,150 — $50 <= price < $150 (half-open, useful for pagination)',
+    path: '/Products/?price=gelt=50,150',
+  },
+  {
+    label: 'Range: half-open (=gtle=)',
+    description: 'price=gtle=50,150 — $50 < price <= $150 (exclusive lower)',
+    path: '/Products/?price=gtle=50,150',
+  },
+  {
+    label: 'Range: exclusive (=gtlt=)',
+    description: 'price=gtlt=50,150 — $50 < price < $150 (open interval)',
+    path: '/Products/?price=gtlt=50,150',
+  },
+  {
     label: 'Chained range',
-    description: 'price=gt=50&lt=200 — inherited attribute chaining',
+    description: 'price=gt=50&lt=200 — inherited attribute chaining (equivalent to =gtlt=50,200)',
     path: '/Products/?price=gt=50&lt=200',
+  },
+  {
+    label: 'Range + filter',
+    description: 'category==electronics&price=gele=100,500 — electronics in $100-$500 range',
+    path: '/Products/?category==electronics&price=gele=100,500',
+  },
+  {
+    label: 'Range + sort',
+    description: 'price=gele=25,100&sort=price — products $25-$100, cheapest first',
+    path: '/Products/?price=gele=25,100&sort=price',
   },
 
   // ── String Matching ──
@@ -313,7 +339,8 @@ const QUERIES: QueryExample[] = [
 
 // Known FIQL operators (longest first to avoid partial matches)
 const FIQL_OPS = [
-  '=gele=', '=out=', '=ne=', '=gt=', '=ge=', '=lt=', '=le=',
+  '=gele=', '=gelt=', '=gtle=', '=gtlt=',
+  '=out=', '=ne=', '=gt=', '=ge=', '=lt=', '=le=',
   '=ct=', '=sw=', '=ew=', '=ft=', '=in=', '=~=', '===', '==',
 ]
 
@@ -379,7 +406,7 @@ function parseConditionString(raw: string, negate?: boolean): Condition[] {
         // Parse value
         if (op === '=in=' || op === '=out=') {
           cond.value = value.split(',').map(v => tryNumeric(v))
-        } else if (op === '=gele=') {
+        } else if (op === '=gele=' || op === '=gelt=' || op === '=gtle=' || op === '=gtlt=') {
           cond.value = value.split(',').map(v => tryNumeric(v))
         } else {
           cond.value = tryNumeric(value)
