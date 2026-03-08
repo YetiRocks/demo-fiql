@@ -6,10 +6,10 @@
 
 # demo-fiql
 
-[![Yeti](https://img.shields.io/badge/Yeti-Application-blue)](https://yetirocks.com)
+[![Yeti](https://img.shields.io/badge/Yeti-Demo-blue)](https://yetirocks.com/demo-fiql)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-> **[Yeti](https://yetirocks.com)** — The Performance Platform for Agent-Driven Development.
+> **[Yeti](https://yetirocks.com)** - The Performance Platform for Agent-Driven Development.
 > Schema-driven APIs, real-time streaming, and vector search. From prompt to production.
 
 50+ FIQL query examples covering the full query language. Select a query from the sidebar, see the URL, run it, and inspect the JSON response.
