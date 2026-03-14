@@ -1,5 +1,6 @@
 import Footer from './components/Footer'
 import { FiqlPage } from './pages/FiqlPage'
+import './theme'
 
 export default function App() {
   return (
