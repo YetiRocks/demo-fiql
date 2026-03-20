@@ -2,10 +2,6 @@ name: "FIQL Query Demo"
 app_id: "demo-fiql"
 version: "1.0.0"
 description: "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
-enabled: true
-rest: true
-graphql: true
-
 schemas:
   - schemas/fiql.graphql
 
