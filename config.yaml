@@ -1,5 +1,6 @@
 name: "FIQL Query Demo"
 app_id: "demo-fiql"
+customer_id: "yeti"
 version: "1.0.0"
 description: "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
 schemas:
