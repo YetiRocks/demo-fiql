@@ -18,7 +18,6 @@ hljs.registerLanguage('fiql', () => ({
   ],
 }))
 
-const BASE_URL = window.location.origin + '/demo-fiql'
 
 interface QueryExample {
   label: string
@@ -612,7 +611,7 @@ export function FiqlPage() {
     setStatusBadge({ text: 'Running...', type: 'idle' })
 
     try {
-      const url = `${BASE_URL}${query.path}`
+      const url = `${RESOURCE_ROUTE}${query.path}`
       const response = await fetch(url, { method: 'GET' })
       const text = await response.text()
 

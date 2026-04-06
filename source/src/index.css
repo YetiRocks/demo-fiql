@@ -24,12 +24,12 @@
 }
 
 .query-item:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
 }
 
 .query-item.active {
-  background: rgba(255, 0, 255, 0.1);
-  border-left: 3px solid var(--color-success);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-left: 3px solid var(--color-primary);
   padding-left: calc(var(--space-3) - 3px);
 }
 

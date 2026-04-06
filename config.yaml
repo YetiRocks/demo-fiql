@@ -4,13 +4,14 @@ customer_id: "yeti"
 version: "1.0.0"
 description: "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
 schemas:
-  - schemas/fiql.graphql
+  path: schemas/fiql.graphql
 
 dataLoader: data/*.json
 
-static_files:
+static:
   path: web
+  route: /
   spa: true
   build:
-    sourceDir: source
+    source: source
     command: npm run build
