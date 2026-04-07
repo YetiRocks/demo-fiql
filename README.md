@@ -46,7 +46,7 @@ Restart yeti. The frontend builds automatically on first load (~30 seconds) and 
 
 ### 2. Open the UI
 
-Navigate to `https://localhost:9996/demo-fiql/` in your browser. Select any query from the sidebar and click Execute.
+Navigate to `https://localhost/demo-fiql/` in your browser. Select any query from the sidebar and click Execute.
 
 ### 3. Query from the command line
 
@@ -55,7 +55,7 @@ Every example works directly with curl. The Products and Brand tables have publi
 **List all products:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/" | head -c 200
+curl -s "https://localhost/demo-fiql/Products/" | head -c 200
 ```
 
 Response (truncated):
@@ -76,7 +76,7 @@ Response (truncated):
 **Exact match -- electronics only:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics"
 ```
 
 Response (truncated):
@@ -92,7 +92,7 @@ Response (truncated):
 **Range query -- products between $50 and $150:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gele=50,150"
+curl -s "https://localhost/demo-fiql/Products/?price=gele=50,150"
 ```
 
 Response (truncated):
@@ -109,7 +109,7 @@ Response (truncated):
 **Full-text search:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/?description=ft=programming"
+curl -s "https://localhost/demo-fiql/Products/?description=ft=programming"
 ```
 
 Response:
@@ -123,7 +123,7 @@ Response:
 **Relationship join -- products from Japanese brands:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/?brand.country==JP&select=name,price,brand{name,country}&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?brand.country==JP&select=name,price,brand{name,country}&stream=false"
 ```
 
 Response:
@@ -140,7 +140,7 @@ Response:
 **Query introspection -- explain the query plan:**
 
 ```bash
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics&price=gt=100&explain=true&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics&price=gt=100&explain=true&stream=false"
 ```
 
 Response:
@@ -211,10 +211,10 @@ The foundation of FIQL filtering. All comparison operators work on strings, numb
 
 ```bash
 # Products over $200
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gt=200"
+curl -s "https://localhost/demo-fiql/Products/?price=gt=200"
 
 # Everything except books
-curl -s "https://localhost:9996/demo-fiql/Products/?category=ne=books"
+curl -s "https://localhost/demo-fiql/Products/?category=ne=books"
 ```
 
 ### Range Operators
@@ -230,23 +230,23 @@ Four range operators cover every combination of inclusive and exclusive bounds. 
 
 ```bash
 # Closed interval: $50 to $150 inclusive
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gele=50,150"
+curl -s "https://localhost/demo-fiql/Products/?price=gele=50,150"
 
 # Half-open: useful for pagination windows
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gelt=50,150"
+curl -s "https://localhost/demo-fiql/Products/?price=gelt=50,150"
 
 # Combine range with equality filter
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics&price=gele=100,500"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics&price=gele=100,500"
 
 # Range with sorting
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gele=25,100&sort=price"
+curl -s "https://localhost/demo-fiql/Products/?price=gele=25,100&sort=price"
 ```
 
 **Chained attribute syntax** is an alternative to range operators. When a condition omits the field name, it inherits the field from the previous condition:
 
 ```bash
 # Equivalent to price=gtlt=50,200
-curl -s "https://localhost:9996/demo-fiql/Products/?price=gt=50&lt=200"
+curl -s "https://localhost/demo-fiql/Products/?price=gt=50&lt=200"
 ```
 
 ### String Matching
@@ -263,19 +263,19 @@ Pattern matching operators for text fields. All operate on the string representa
 
 ```bash
 # Products with "Pro" in the name
-curl -s "https://localhost:9996/demo-fiql/Products/?name=ct=Pro"
+curl -s "https://localhost/demo-fiql/Products/?name=ct=Pro"
 
 # Names starting with "Ultra"
-curl -s "https://localhost:9996/demo-fiql/Products/?name=sw=Ultra"
+curl -s "https://localhost/demo-fiql/Products/?name=sw=Ultra"
 
 # Descriptions ending with "kit"
-curl -s "https://localhost:9996/demo-fiql/Products/?description=ew=kit"
+curl -s "https://localhost/demo-fiql/Products/?description=ew=kit"
 
 # Wildcard: contains "Pro" anywhere
-curl -s "https://localhost:9996/demo-fiql/Products/?name==*Pro*"
+curl -s "https://localhost/demo-fiql/Products/?name==*Pro*"
 
 # Regex: case-insensitive match
-curl -s "https://localhost:9996/demo-fiql/Products/?name=~=(?i)pro"
+curl -s "https://localhost/demo-fiql/Products/?name=~=(?i)pro"
 ```
 
 ### Full-Text Search
@@ -284,10 +284,10 @@ Full-text search operates on fields with `@indexed(type: "fulltext")`. Uses the 
 
 ```bash
 # Single term
-curl -s "https://localhost:9996/demo-fiql/Products/?description=ft=programming"
+curl -s "https://localhost/demo-fiql/Products/?description=ft=programming"
 
 # Multi-term (AND semantics -- all terms must match)
-curl -s "https://localhost:9996/demo-fiql/Products/?name=ft=ultra%20monitor"
+curl -s "https://localhost/demo-fiql/Products/?name=ft=ultra%20monitor"
 ```
 
 In this schema, `name` and `description` on Products both have fulltext indexes.
@@ -303,10 +303,10 @@ Test whether a field value is in (or not in) a set of values.
 
 ```bash
 # Electronics or books
-curl -s "https://localhost:9996/demo-fiql/Products/?category=in=electronics,books"
+curl -s "https://localhost/demo-fiql/Products/?category=in=electronics,books"
 
 # Everything except clothing and furniture
-curl -s "https://localhost:9996/demo-fiql/Products/?category=out=clothing,furniture"
+curl -s "https://localhost/demo-fiql/Products/?category=out=clothing,furniture"
 ```
 
 ### Logical Operators
@@ -322,19 +322,19 @@ Combine conditions with AND, OR, NOT, and grouping.
 
 ```bash
 # AND: electronics that are in stock
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics&inStock==true"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics&inStock==true"
 
 # OR: electronics or cheap items
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics|price=le=25"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics|price=le=25"
 
 # NOT: exclude items over $100
-curl -s "https://localhost:9996/demo-fiql/Products/?!(price=gt=100)"
+curl -s "https://localhost/demo-fiql/Products/?!(price=gt=100)"
 
 # NOT group: exclude out-of-stock books
-curl -s "https://localhost:9996/demo-fiql/Products/?!(category==books&inStock==false)"
+curl -s "https://localhost/demo-fiql/Products/?!(category==books&inStock==false)"
 
 # Grouped OR + AND: expensive electronics OR out-of-stock
-curl -s "https://localhost:9996/demo-fiql/Products/?(category==electronics&price=gt=100)|inStock==false"
+curl -s "https://localhost/demo-fiql/Products/?(category==electronics&price=gt=100)|inStock==false"
 ```
 
 ### Nested and Array Data
@@ -343,10 +343,10 @@ Access nested object fields with dot notation. Array fields match if any element
 
 ```bash
 # Nested object: products from Japanese manufacturers
-curl -s "https://localhost:9996/demo-fiql/Products/?manufacturer.country==JP"
+curl -s "https://localhost/demo-fiql/Products/?manufacturer.country==JP"
 
 # Array element: products tagged "popular"
-curl -s "https://localhost:9996/demo-fiql/Products/?tags==popular"
+curl -s "https://localhost/demo-fiql/Products/?tags==popular"
 ```
 
 ### Type Coercion
@@ -360,10 +360,10 @@ Force specific type interpretation with type prefixes.
 
 ```bash
 # Numeric comparison
-curl -s "https://localhost:9996/demo-fiql/Products/?price==number:499.99"
+curl -s "https://localhost/demo-fiql/Products/?price==number:499.99"
 
 # String literal match
-curl -s "https://localhost:9996/demo-fiql/Products/?inStock==string:true"
+curl -s "https://localhost/demo-fiql/Products/?inStock==string:true"
 ```
 
 ### Field Selection
@@ -372,16 +372,16 @@ Return only specific fields in the response. Supports nested field projection wi
 
 ```bash
 # Select two fields
-curl -s "https://localhost:9996/demo-fiql/Products/?select=name,price"
+curl -s "https://localhost/demo-fiql/Products/?select=name,price"
 
 # Select with filter
-curl -s "https://localhost:9996/demo-fiql/Products/?category==sports&select=name,price"
+curl -s "https://localhost/demo-fiql/Products/?category==sports&select=name,price"
 
 # Select nested fields from manufacturer object
-curl -s "https://localhost:9996/demo-fiql/Products/?select=name,price,manufacturer{name,country}"
+curl -s "https://localhost/demo-fiql/Products/?select=name,price,manufacturer{name,country}"
 
 # Function-style syntax (equivalent)
-curl -s "https://localhost:9996/demo-fiql/Products/?select(name,price)"
+curl -s "https://localhost/demo-fiql/Products/?select(name,price)"
 ```
 
 ### Sorting
@@ -390,19 +390,19 @@ Sort results by one or more fields. Prefix with `-` for descending order.
 
 ```bash
 # Alphabetical by name
-curl -s "https://localhost:9996/demo-fiql/Products/?sort=name"
+curl -s "https://localhost/demo-fiql/Products/?sort=name"
 
 # Most expensive first
-curl -s "https://localhost:9996/demo-fiql/Products/?sort=-price"
+curl -s "https://localhost/demo-fiql/Products/?sort=-price"
 
 # Multi-level: category ascending, then price descending
-curl -s "https://localhost:9996/demo-fiql/Products/?sort=category,-price"
+curl -s "https://localhost/demo-fiql/Products/?sort=category,-price"
 
 # Sort with filter: books, most expensive first
-curl -s "https://localhost:9996/demo-fiql/Products/?category==books&sort=-price"
+curl -s "https://localhost/demo-fiql/Products/?category==books&sort=-price"
 
 # Function-style syntax
-curl -s "https://localhost:9996/demo-fiql/Products/?sort(-price)"
+curl -s "https://localhost/demo-fiql/Products/?sort(-price)"
 ```
 
 ### Pagination
@@ -411,16 +411,16 @@ Control result set size with limit and offset. Use `pagination=true` to include 
 
 ```bash
 # First 5 records
-curl -s "https://localhost:9996/demo-fiql/Products/?limit=5&offset=0"
+curl -s "https://localhost/demo-fiql/Products/?limit=5&offset=0"
 
 # Next 5 records
-curl -s "https://localhost:9996/demo-fiql/Products/?limit=5&offset=5"
+curl -s "https://localhost/demo-fiql/Products/?limit=5&offset=5"
 
 # Include total count in response
-curl -s "https://localhost:9996/demo-fiql/Products/?pagination=true&limit=5"
+curl -s "https://localhost/demo-fiql/Products/?pagination=true&limit=5"
 
 # Function-style: limit(offset, count)
-curl -s "https://localhost:9996/demo-fiql/Products/?limit(5,10)"
+curl -s "https://localhost/demo-fiql/Products/?limit(5,10)"
 ```
 
 ### Relationship Joins
@@ -429,16 +429,16 @@ Query across table relationships defined with `@relationship` in the schema. Pro
 
 ```bash
 # Semi-join: filter products by brand name
-curl -s "https://localhost:9996/demo-fiql/Products/?brand.name==ViewTech&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?brand.name==ViewTech&stream=false"
 
 # Include related fields in response
-curl -s "https://localhost:9996/demo-fiql/Products/?select=name,price,brand{name,country}&limit=5&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?select=name,price,brand{name,country}&limit=5&stream=false"
 
 # Filter + include: Japanese brands with projected fields
-curl -s "https://localhost:9996/demo-fiql/Products/?brand.country==JP&select=name,brand{name}&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?brand.country==JP&select=name,brand{name}&stream=false"
 
 # Reverse join: brands that have products over $500
-curl -s "https://localhost:9996/demo-fiql/Brand/?products.price=gt=500&stream=false"
+curl -s "https://localhost/demo-fiql/Brand/?products.price=gt=500&stream=false"
 ```
 
 ### Query Introspection
@@ -447,10 +447,10 @@ Add `explain=true` to see how the query planner resolves your query -- which ind
 
 ```bash
 # Explain a simple filter
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics&explain=true&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics&explain=true&stream=false"
 
 # Explain a composite index query
-curl -s "https://localhost:9996/demo-fiql/Products/?category==electronics&price=gt=100&explain=true&stream=false"
+curl -s "https://localhost/demo-fiql/Products/?category==electronics&price=gt=100&explain=true&stream=false"
 ```
 
 The composite index on `(category, price)` is defined in the schema via `@compositeIndex(fields: "category,price")`. When both fields appear in a query, the planner uses the composite index for a single efficient scan instead of intersecting two separate index lookups.
@@ -532,15 +532,16 @@ app_id: "demo-fiql"
 version: "1.0.0"
 description: "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
 schemas:
-  - schemas/fiql.graphql
+  path: schemas/fiql.graphql
 
 dataLoader: data/*.json
 
-static_files:
+static:
   path: web
+  route: /
   spa: true
   build:
-    sourceDir: source
+    source: source
     command: npm run build
 ```
 
