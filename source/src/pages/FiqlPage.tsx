@@ -611,7 +611,7 @@ export function FiqlPage() {
     setStatusBadge({ text: 'Running...', type: 'idle' })
 
     try {
-      const url = `${RESOURCE_ROUTE}${query.path}`
+      const url = `${__STATIC_ROOT__}/${__RESOURCES_ROOT__}${query.path}`
       const response = await fetch(url, { method: 'GET' })
       const text = await response.text()
 
