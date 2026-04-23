@@ -1,0 +1,13 @@
+[package]
+name = "demo-fiql"
+edition = "2024"
+description = "FIQL Query Demo"
+version = "1.0.0"
+
+[package.metadata.app]
+customer_id = "yeti"
+schemas = "schemas/fiql.graphql"
+static = { path = "web", root = "/", source = "source", spa = true, build = "npm install && npm run build" }
+loaders = { data = "data/*.json" }
+
+[dependencies]
