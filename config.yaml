@@ -1,0 +1,16 @@
+name: "FIQL Query Demo"
+app_id: "demo-fiql"
+customer_id: "yeti"
+version: "1.0.0"
+description: "FIQL Query Demo"
+
+schemas:
+  path: schemas/fiql.graphql
+
+static:
+  path: web
+  root: /
+  spa: true
+  build:
+    source: source
+    command: npm install && npm run build
