@@ -1,22 +1,5 @@
-import { useState, useCallback, useMemo, useEffect, useRef } from 'react'
-import hljs from 'highlight.js/lib/core'
-import json from 'highlight.js/lib/languages/json'
-import { syntaxHighlight } from '../utils.ts'
-
-hljs.registerLanguage('json', json)
-
-// Register FIQL language for highlight.js
-hljs.registerLanguage('fiql', () => ({
-  name: 'FIQL',
-  contains: [
-    { className: 'keyword', begin: '\\b(select|sort|limit|offset|explain|pagination|stream)\\b' },
-    { className: 'attr', begin: '[a-zA-Z_][a-zA-Z0-9_.]*(?=\\s*[=(])' },
-    { className: 'symbol', begin: '=(?:gt|ge|lt|le|ne|ct|sw|ew|ft|in|out|gele|gelt|gtle|gtlt|~)=' },
-    { className: 'symbol', begin: '===|==' },
-    { className: 'string', begin: '(?<==)[^&|()!]+' },
-    { className: 'punctuation', begin: '[&|()!,]' },
-  ],
-}))
+import { useState, useCallback, useMemo } from 'react'
+import CodeBlock from '../components/CodeBlock'
 
 
 interface QueryExample {
@@ -574,18 +557,9 @@ function parseFiqlToResourceJson(query: QueryExample): string {
   return JSON.stringify(result, null, 2)
 }
 
-// Highlighted code pane (read-only, fills its section)
+// Adapter — delegates to the shared CodeBlock so FIQL/JSON share one pipeline.
 function CodePane({ language, children }: { language: string; children: string }) {
-  const codeRef = useRef<HTMLElement>(null)
-  useEffect(() => {
-    if (codeRef.current) {
-      codeRef.current.removeAttribute('data-highlighted')
-      hljs.highlightElement(codeRef.current)
-    }
-  }, [children])
-  return (
-    <pre className="code-pane"><code ref={codeRef} className={`language-${language}`}>{children}</code></pre>
-  )
+  return <CodeBlock value={children} language={language} />
 }
 
 export function FiqlPage() {
@@ -691,10 +665,7 @@ export function FiqlPage() {
         </div>
         <div className="panel-body results-body">
           {result ? (
-            <pre
-              className="results-pre"
-              dangerouslySetInnerHTML={{ __html: syntaxHighlight(result) }}
-            />
+            <CodeBlock value={result} language="json" />
           ) : (
             <div className="empty-state">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
