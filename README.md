@@ -524,25 +524,18 @@ The composite index on `(category, price)` is defined in the schema via `@compos
 
 ## Configuration
 
-### config.yaml
+App configuration lives in `Cargo.toml` under `[package.metadata.app]`. There is no separate `config.yaml` or `services.yaml`.
 
-```yaml
-name: "FIQL Query Demo"
-app_id: "demo-fiql"
-version: "1.0.0"
-description: "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
-schemas:
-  path: schemas/fiql.graphql
+```toml
+[package]
+name = "demo-fiql"
+version = "1.0.0"
+description = "50+ query examples covering equality, ranges, full-text search, joins, sorting, and pagination"
 
-dataLoader: data/*.json
-
-static:
-  path: web
-  route: /
-  spa: true
-  build:
-    source: source
-    command: npm run build
+[package.metadata.app]
+schemas = "schemas/fiql.graphql"
+dataLoader = "data/*.json"
+static = { path = "web", source = "source", spa = true, build = "npm install && npm run build" }
 ```
 
 Key configuration details:
@@ -551,8 +544,8 @@ Key configuration details:
 |-------|-------|---------|
 | `schemas` | `schemas/fiql.graphql` | Products and Brand table definitions |
 | `dataLoader` | `data/*.json` | Seeds 50 products and 22 brands on first start |
-| `static_files.spa` | `true` | SPA mode -- all routes fall back to index.html |
-| `static_files.build` | Vite build | Compiles React frontend to `web/` on first load |
+| `static.spa` | `true` | SPA mode -- all routes fall back to index.html |
+| `static.build` | `npm install && npm run build` | Compiles React frontend to `web/` on first load |
 
 ### Schema Directives
 
@@ -573,7 +566,7 @@ Key configuration details:
 
 ```
 demo-fiql/
-├── config.yaml              # App configuration
+├── Cargo.toml               # App configuration under [package.metadata.app]
 ├── schemas/
 │   └── fiql.graphql         # Products + Brand table definitions
 ├── data/
@@ -584,15 +577,38 @@ demo-fiql/
     ├── package.json
     ├── vite.config.ts
     └── src/
-        ├── main.tsx         # Entry point
-        ├── App.tsx          # Layout shell
-        ├── theme.ts         # Color tokens
-        ├── utils.ts         # JSON syntax highlighting
+        ├── main.tsx              # Entry point
+        ├── App.tsx               # Thin shell -- wires auth gate + page
+        ├── api.ts                # Fetch helpers
+        ├── types.ts              # Shared TypeScript types
+        ├── utils.ts              # JSON syntax highlighting
+        ├── components/
+        │   └── Footer.tsx        # Shared UI primitives
+        ├── hooks/
+        │   └── useAuth.ts        # Auth state hook (template)
         ├── pages/
-        │   └── FiqlPage.tsx # Query list, FIQL parser, results pane
-        └── components/
-            └── Footer.tsx   # Footer bar
+        │   ├── FiqlPage.tsx      # Query list, FIQL parser, results pane
+        │   └── Login.tsx         # Configurable login page (template)
+        └── styles/
+            ├── _vars.css         # Per-app brand colors and shared tokens
+            ├── yeti.css          # Canonical Yeti stylesheet
+            └── index.css         # App-specific overrides
 ```
+
+The `src/` layout follows the standard yeti UI app structure: a thin `App.tsx`, root utility modules, shared UI in `components/`, hooks in `hooks/`, pages (including the optional `Login.tsx`) in `pages/`, and stylesheets in `styles/`. `yeti.css` is the canonical stylesheet shared across all yeti apps; `_vars.css` holds this app's brand tokens; `index.css` carries app-specific overrides.
+
+## Authentication
+
+demo-fiql is fully open by default: both tables declare `@export(public: [read])` so every example works without credentials. To require login, declare an `[package.metadata.auth]` section in `Cargo.toml` (methods, JWT, OAuth providers, role rules) and gate the SPA with the bundled `Login.tsx` + `useAuth` hook:
+
+```tsx
+const auth = useAuth()
+if (auth === null) return <Loading/>
+if (!auth) return <Login/>
+return <FiqlPage/>
+```
+
+The `Login` component accepts optional `logo`, `title`, `subtitle`, and `redirectUri` props for branding.
 
 ---
 
