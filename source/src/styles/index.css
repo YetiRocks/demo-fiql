@@ -61,3 +61,11 @@
   background: var(--color-black);
 }
 
+/* Phone width: the columns stack (yeti.css) and each is as tall as its
+ * content, so the 56-query list would push the URL and results panes some
+ * 3,500px down the page. Below 600px the list keeps a scrolling window. */
+@media (max-width: 600px) {
+  .query-list {
+    max-height: 360px;
+  }
+}
