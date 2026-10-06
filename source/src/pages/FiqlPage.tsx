@@ -647,7 +647,7 @@ export function FiqlPage() {
             {loading ? 'Running...' : 'Execute'}
           </button>
         </div>
-        <CodePane language="fiql">{fiqlUrl || 'Select a query from the left'}</CodePane>
+        <CodePane language="fiql">{fiqlUrl || 'Select a query from the list'}</CodePane>
         <div className="panel-header">
           <span className="panel-title">Resource JSON</span>
           <span className="panel-badge">Parsed</span>
