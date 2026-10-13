@@ -10,4 +10,8 @@ schemas = "schemas/fiql.graphql"
 static = { path = "web", root = "/", source = "source", spa = true, build = "npm install && npm run build" }
 loaders = { data = "data/*.json" }
 
+[package.metadata.app.tests]
+dir = "tests/yeti"
+writes = "disposable"
+
 [dependencies]

@@ -1,0 +1,443 @@
+# demo-fiql: Products and Brand, public read. FIQL operators run against the
+# seeded catalogue (data/*.json); ids and counts are the seed's.
+
+
+[[case]]
+name = "list Products"
+protocol = "http"
+path = "/api/products/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Products prod-001"
+protocol = "http"
+path = "/api/products/prod-001"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "prod-001"
+[[case.expect.json]]
+pointer = "/name"
+equals = "Ultra HD Monitor"
+
+
+[[case]]
+name = "absent Products row is a problem 404"
+protocol = "http"
+path = "/api/products/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Products"
+protocol = "graphql"
+query = "{ Products(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Products"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Products/0/id"
+type = "string"
+
+
+[[case]]
+name = "list Brand"
+protocol = "http"
+path = "/api/brand/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Brand brand-viewtech"
+protocol = "http"
+path = "/api/brand/brand-viewtech"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "brand-viewtech"
+[[case.expect.json]]
+pointer = "/name"
+equals = "ViewTech"
+
+
+[[case]]
+name = "absent Brand row is a problem 404"
+protocol = "http"
+path = "/api/brand/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Brand"
+protocol = "graphql"
+query = "{ Brand(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Brand"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Brand/0/id"
+type = "string"
+
+
+[[case]]
+name = "FIQL equality on an indexed column"
+protocol = "http"
+path = "/api/products/?category==electronics&select=id"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+contains = "prod-001"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "FIQL not-equal excludes the value"
+protocol = "http"
+path = "/api/products/?category=ne=electronics&select=id,category&limit=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/category"
+type = "string"
+
+
+[[case]]
+name = "FIQL greater-than"
+protocol = "http"
+path = "/api/products/?price=gt=800&select=id,price"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+contains = "prod-040"
+[[case.expect.json]]
+pointer = "/0/price"
+type = "number"
+
+
+[[case]]
+name = "FIQL range gele"
+protocol = "http"
+path = "/api/products/?price=gele=50,150&select=id,price&sort=price&limit=3"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/price"
+type = "number"
+
+
+[[case]]
+name = "FIQL contains"
+protocol = "http"
+path = "/api/products/?name=ct=Monitor&select=id,name"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+contains = "Ultra HD Monitor"
+[[case.expect.json]]
+pointer = "/0/name"
+type = "string"
+
+
+[[case]]
+name = "FIQL full-text"
+protocol = "http"
+path = "/api/products/?description=ft=programming&select=id"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+contains = "prod-004"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "FIQL boolean column"
+protocol = "http"
+path = "/api/products/?inStock==false&select=id,inStock&limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/inStock"
+equals = false
+
+
+[[case]]
+name = "FIQL sort descending"
+protocol = "http"
+path = "/api/products/?sort=-price&select=id,price&limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+equals = "prod-040"
+[[case.expect.json]]
+pointer = "/0/price"
+equals = 899.99
+
+
+[[case]]
+name = "FIQL limit and offset"
+protocol = "http"
+path = "/api/products/?select=id&limit=2&offset=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+equals = "prod-002"
+[[case.expect.json]]
+pointer = "/1/id"
+equals = "prod-003"
+
+
+[[case]]
+name = "FIQL an empty match is an empty array"
+protocol = "http"
+path = "/api/products/?price=lt=0"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0"
+present = false
+
+
+[[case]]
+name = "FIQL chained attribute across the brand relationship"
+protocol = "http"
+path = "/api/products/?brand.country==JP&select=name,price,brand%7Bname,country%7D&limit=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/brand/country"
+equals = "JP"
+[[case.expect.json]]
+pointer = "/0/brand/name"
+type = "string"
+
+
+[[case]]
+name = "FIQL explain returns the parsed plan"
+protocol = "http"
+path = "/api/products/?category==electronics&price=gt=100&explain=true&stream=false&limit=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/conditions"
+type = "array"
+[[case.expect.json]]
+pointer = "/estimated_cost"
+type = "number"
+
+
+[[case]]
+name = "FIQL on Brand"
+protocol = "http"
+path = "/api/brand/?country==JP&select=id,country"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/country"
+equals = "JP"
+
+
+[[case]]
+name = "GraphQL Products resolves the brand relationship"
+protocol = "graphql"
+query = "{ Products(limit: 1) { id name brand { name country } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Products/0/brand/name"
+type = "string"
+[[case.expect.json]]
+pointer = "/data/Products/0/brand/country"
+type = "string"
+
+
+[[case]]
+name = "GraphQL Brand resolves its products"
+protocol = "graphql"
+query = "{ Brand(limit: 1) { id name products { id } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Brand/0/products"
+type = "array"
+
+
+[[case]]
+name = "GraphQL unknown field is an error"
+protocol = "graphql"
+query = "{ yt_nope }"
+[case.expect]
+status = 400
+content_type = "json"
+[[case.expect.json]]
+pointer = "/errors/0/message"
+type = "string"
+
+
+[[case]]
+name = "MCP initialize"
+protocol = "mcp"
+rpc = "initialize"
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/serverInfo/name"
+type = "string"
+[[case.expect.json]]
+pointer = "/result/protocolVersion"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/list names the table tools"
+protocol = "mcp"
+rpc = "tools/list"
+[case.expect]
+status = 200
+contains = "products_list"
+[[case.expect.json]]
+pointer = "/result/tools"
+type = "array"
+[[case.expect.json]]
+pointer = "/result/tools/0/name"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/call products_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "products_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/type"
+equals = "text"
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "MCP unknown method is a JSON-RPC error"
+protocol = "mcp"
+rpc = "no/such/method"
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/error/code"
+equals = -32601
+
+
+[[case]]
+name = "MCP tools/call brand_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "brand_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "SSE opens on Products"
+protocol = "sse"
+path = "/api/products?stream=sse"
+
+
+[[case]]
+name = "gRPC-Web opens on Products"
+protocol = "grpcweb"
+path = "/api/products?stream=grpcweb"
+
+
+[[case]]
+name = "WebSocket opens on Products"
+protocol = "ws"
+path = "/api/products"
+
+
+[[case]]
+name = "MQTT subscribes to Products"
+protocol = "mqtt"
+table = "Products"
+
+
+[[case]]
+name = "anonymous create is refused (public grant is read)"
+protocol = "http"
+method = "POST"
+path = "/api/brand"
+json = { id = "yt-{run}", name = "x", country = "x" }
+[case.expect]
+status = 401
+content_type = "application/problem+json"
+shape = "problem"
