@@ -9,17 +9,10 @@ type Products @table(database: "demo-fiql") @distribute @export @access(public: 
     description: String @indexed(type: "fulltext")
     category: String! @indexed
     inStock: Boolean! @indexed
-    manufacturer: Manufacturer
+    manufacturer: JSON
     tags: [String]
     brandId: ID @indexed
     brand: Brand @relationship(from: "brandId")
-}
-
-# Embedded (non-table) object type, stored inline on Products.manufacturer
-type Manufacturer {
-    name: String
-    country: String
-    year: Int
 }
 
 # Brands for demonstrating chained attributes and joins
