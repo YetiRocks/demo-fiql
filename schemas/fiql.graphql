@@ -9,8 +9,8 @@ type Products @table(database: "demo-fiql") @distribute @export @access(public: 
     description: String @indexed(type: "fulltext")
     category: String! @indexed
     inStock: Boolean! @indexed
-    manufacturer: String
-    tags: String
+    manufacturer: JSON
+    tags: [String]
     brandId: ID @indexed
     brand: Brand @relationship(from: "brandId")
 }
