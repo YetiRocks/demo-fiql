@@ -1,5 +1,5 @@
 {
-  "database": "example-queries",
+  "database": "demo-fiql",
   "table": "Brand",
   "records": [
     { "id": "brand-viewtech", "name": "ViewTech", "country": "JP", "foundedYear": 2024 },

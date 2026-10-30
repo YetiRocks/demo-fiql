@@ -267,6 +267,97 @@ type = "string"
 
 
 [[case]]
+name = "the seed loads all 50 Products"
+protocol = "http"
+path = "/api/products/?select=id&limit=100"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/49/id"
+type = "string"
+[[case.expect.json]]
+pointer = "/50"
+present = false
+
+
+[[case]]
+name = "FIQL dot-path into the embedded manufacturer object"
+protocol = "http"
+path = "/api/products/?manufacturer.country==JP&select=id,manufacturer&sort=id"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+equals = "prod-001"
+[[case.expect.json]]
+pointer = "/0/manufacturer"
+equals = { name = "ViewTech", country = "JP", year = 2024 }
+[[case.expect.json]]
+pointer = "/4/manufacturer/country"
+equals = "JP"
+[[case.expect.json]]
+pointer = "/5"
+present = false
+
+
+[[case]]
+name = "FIQL equality matches any element of the tags array"
+protocol = "http"
+path = "/api/products/?tags==popular&select=id,tags&sort=id"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+equals = "prod-001"
+[[case.expect.json]]
+pointer = "/0/tags"
+equals = ["display", "4k", "popular"]
+[[case.expect.json]]
+pointer = "/4/id"
+equals = "prod-040"
+[[case.expect.json]]
+pointer = "/5"
+present = false
+
+
+[[case]]
+name = "select narrows the embedded manufacturer object"
+protocol = "http"
+path = "/api/products/?select=name,price,manufacturer%7Bname,country%7D&limit=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/manufacturer/country"
+type = "string"
+[[case.expect.json]]
+pointer = "/0/manufacturer/year"
+present = false
+
+
+[[case]]
+name = "GraphQL selects into the embedded manufacturer object"
+protocol = "graphql"
+query = "{ Products(limit: 1) { id manufacturer { country } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Products/0/manufacturer/country"
+type = "string"
+[[case.expect.json]]
+pointer = "/data/Products/0/manufacturer/name"
+present = false
+
+
+[[case]]
 name = "FIQL explain returns the parsed plan"
 protocol = "http"
 path = "/api/products/?category==electronics&price=gt=100&explain=true&stream=false&limit=1"
