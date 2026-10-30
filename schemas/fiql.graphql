@@ -1,5 +1,12 @@
 # Product catalog for demonstrating FIQL query patterns
 
+# Who made a product, embedded in it as an object (no @table)
+type Manufacturer {
+    name: String
+    country: String
+    year: Int
+}
+
 type Products @table(database: "demo-fiql") @distribute @export @access(public: [read]) @compositeIndex(fields: "category,price") {
     id: ID! @primaryKey
     name: String! @indexed(type: "fulltext")
@@ -9,8 +16,8 @@ type Products @table(database: "demo-fiql") @distribute @export @access(public: 
     description: String @indexed(type: "fulltext")
     category: String! @indexed
     inStock: Boolean! @indexed
-    manufacturer: String
-    tags: String
+    manufacturer: Manufacturer
+    tags: [String]
     brandId: ID @indexed
     brand: Brand @relationship(from: "brandId")
 }

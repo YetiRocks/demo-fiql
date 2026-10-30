@@ -1,5 +1,5 @@
 {
-  "database": "example-queries",
+  "database": "demo-fiql",
   "table": "Products",
   "records": [
     {
